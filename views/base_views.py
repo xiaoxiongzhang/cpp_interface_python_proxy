@@ -7,7 +7,6 @@ from fastapi import UploadFile, File, Request
 from app import app
 from schemas import SdkApiConfig
 from utils import BASE_PATH
-from views import type_map
 
 
 @app.post("/uploadSDK", summary="SDK上传/更新接口", tags=["SDK配置接口"])
@@ -64,10 +63,11 @@ async def batchAddSdkApi(api_infos: List[SdkApiConfig]):
 
 
 @app.get("/dataType", summary="Python C++数据类型映射", tags=["SDK配置接口"])
-async def batchAddSdkApi(api_infos: List[SdkApiConfig]):
+async def batchAddSdkApi():
     """
     C++：Python  数据类型映射
     """
+    from views import type_map
 
     return type_map
 
